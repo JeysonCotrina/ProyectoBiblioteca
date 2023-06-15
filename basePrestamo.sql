@@ -1,94 +1,129 @@
 create database prestamos;
 use prestamos;
 
-create table tipo_usuario(
-id_tipo int primary key auto_increment,
-nombre varchar(15)
-);
-
-create table usuario (
+CREATE TABLE usuario(
 rut_usuario varchar(10) primary key,
-id_tipo int,
-nombre varchar(50),
-apellido varchar(50),
-telefono int(9),
-correo varchar(50),
-constraint fk_id_tipo foreign key (id_tipo) references tipo_usuario (id_tipo)
+contrasena_usuario varchar(100),
+nombre_usuario varchar(50),
+apellido_usuario varchar(50),
+telefono_usuario int(9),
+correo_usuario varchar(50)
 );
 
-create table libro(
+CREATE TABLE libro(
 codigo_libro varchar(5) primary key,
+titulo_libro varchar(50),
 cant_ejemplar int,
-titulo varchar(50),
-autor varchar(50)
+autor varchar(50),
+editorial varchar(50),
+categoria varchar(50)
 );
 
-create table estadoPrestamo(
-id_estadoPrestamo int primary key auto_increment,
-nombre varchar(10)
+create table tipo_cliente(
+id_tipo_cliente int primary key auto_increment,
+nombre_tipo varchar(15)
 );
 
-create table prestamo (
-id_prestamo int primary key auto_increment,
-codigo_libro varchar(5), -- Libro
+create table cliente (
+rut_cliente varchar(10) primary key,
+contrasena_cliente varchar(100),
+nombre_cliente varchar(50),
+apellido_cliente varchar(50),
+telefono_cliente int(9),
+correo_cliente varchar(50),
+id_tipo_cliente int,
+constraint fk_id_tipo_cliente foreign key (id_tipo_cliente) references tipo_cliente (id_tipo_cliente)
+);
+
+CREATE TABLE estado_prestamo(
+id_estado int primary key auto_increment,
+nombre_estado varchar(50)
+);
+
+CREATE TABLE prestamo_libro(
+id_prestado_libro int primary key auto_increment,
+f_prestamo date,
+f_entrega date,
+f_devolucion date,
+multa int,
+rut_cliente varchar(10),
+codigo_libro varchar(5),
 rut_usuario varchar(10),
-f_entrega date, -- dia en que se tendria que entregar el libro según la fecha establecida
-f_prestamo date, -- dia en que se realiza el prestamo
-f_devolucion date, -- dia en que el usuario devuelve el libro
-multa float,
-id_estadoPrestamo int,  -- al fia, retrasado
-constraint fk_id_estadoPrestamo foreign key (id_estadoPrestamo) references estadoPrestamo (id_estadoPrestamo),
+id_estado int,
+constraint fk_rut_cliente foreign key (rut_cliente) references cliente (rut_cliente),
 constraint fk_codigo_libro foreign key (codigo_libro) references libro (codigo_libro),
-constraint fk_rut_usuario foreign key (rut_usuario) references usuario (rut_usuario)
+constraint fk_rut_usuario foreign key (rut_usuario) references usuario (rut_usuario),
+constraint fk_id_estado foreign key (id_estado) references estado_prestamo(id_estado)
 );
 
--- ingresar tipo de usuario
-insert into tipo_usuario(nombre) value ('Docente');
-insert into tipo_usuario(nombre) value ('Alumno');
-insert into tipo_usuario(nombre) value ('Encargado');
+CREATE TABLE reporte_prestamo(
+id_reporte int primary key auto_increment,
+id_prestado_libro int,
+constraint fk_id_prestado_libro foreign key (id_prestado_libro) references prestamo_libro(id_prestado_libro)
+);
+-- ingreso de Usuarios
+INSERT INTO usuario(rut_usuario,contrasena_usuario,nombre_usuario,apellido_usuario,telefono_usuario,correo_usuario) 
+VALUES('21475689-7','juan222','Juan','Roldan',965487721,'juan123@gmail.com');
+INSERT INTO usuario(rut_usuario,contrasena_usuario,nombre_usuario,apellido_usuario,telefono_usuario,correo_usuario) 
+VALUES('24785213-1','piero222','Piero','Huaman',954871236,'piero25@gmail.com');
+INSERT INTO usuario(rut_usuario,contrasena_usuario,nombre_usuario,apellido_usuario,telefono_usuario,correo_usuario) 
+VALUES('25745816-4','jazmin222','Jazmin','Cueva',941255299,'jazmin244@hotmail.com');
+SELECT * FROM Usuario;
 
-SELECT*FROM tipo_usuario;
+-- ingreso de Tipo de cliente
+INSERT INTO tipo_cliente(nombre_tipo) VALUES('Docente');
+INSERT INTO tipo_cliente(nombre_tipo) VALUES('Alumno');
+SELECT * FROM tipo_cliente;
 
--- Ingreso de datos docente
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('25009286-3',1,'Piero','Huaman',965630336,'pierohuaman654@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('23976475-6',1,'Juan','Roldan',992030738,'juanroldan123@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('19283746-8',1,'Elvira','Yraita',983746237,'elvirayraita23@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('21908266-0',1,'Britany','Villacorta',939402847,'britanyvillacorta24@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('22937480-3',1,'Pedro','Zavaleta',992837465,'Pedrozavaleta624@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('19374827-8',1,'Marlon','Villacorta',982736372,'marlonvillacorta234@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('18372536-5',1,'Leidy','Zavaleta',927399182,'leidyzavaleta834@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('29304859-3',1,'Justina','Castillo',993027493,'justinacastillo7867@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('19203846-2',2,'Gabriel','Polo',922374839,'gabrielpolo543@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('24837947-1',2,'Veronica','Andrade',928837774,'veronicaandrade354@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('29273537-7',2,'Aaron','Alarcon',927384492,'aaronalarcon297@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('29374615-4',2,'Maricielo','Rodriguez',999273812,'maricielorodriguez_483@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('23647382-2',2,'Zully','Zavaleta',900023417,'zullyzavaleta.324@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('21273534-5',2,'Renzo','Cardenas',977384829,'renzocardenas.490@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('23927462-8',2,'Jose','Bellina',928837520,'josebellina_483@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('23462532-3',2,'Alexis','Soteldo',917384334,'alexissoteldo983@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('23432532-9',1,'Jerson','Pastor',933748123,'jersonpastor.409@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('21234753-6',1,'Ernesto','Valles',974833178,'ernestovalles_348@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('24329483-3',1,'Brigit','Sanchez',982237563,'brigitsanchez.09@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('24534623-6',3,'Gabriela','Perez',922746399,'gabrielaperez_20@gmail.com');
-insert into usuario(rut_usuario,id_tipo,nombre,apellido,telefono,correo) values ('19383723-2',3,'Pablo','Vizlao',927364983,'pablovizlao.29@gmail.com');        
+-- ingreso de Cliente
+SELECT * FROM cliente;
+INSERT INTO  cliente(rut_cliente,contrasena_cliente,nombre_cliente,apellido_cliente,telefono_cliente,correo_cliente,id_tipo_cliente) 
+VALUES ('16547825-4','raul222','Raul','Rodriguez',964251872,'raul34@gmail.com',1);
+INSERT INTO  cliente(rut_cliente,contrasena_cliente,nombre_cliente,apellido_cliente,telefono_cliente,correo_cliente,id_tipo_cliente) 
+VALUES ('25485221-2','elvira222','Elvira','Yraita',922411455,'elvira23@gamil.com',1);
+INSERT INTO  cliente(rut_cliente,contrasena_cliente,nombre_cliente,apellido_cliente,telefono_cliente,correo_cliente,id_tipo_cliente) 
+VALUES ('19655124-1','justina222','Justina','Mejilla',912355354,'justina.4@hotmail.com',1);
+INSERT INTO  cliente(rut_cliente,contrasena_cliente,nombre_cliente,apellido_cliente,telefono_cliente,correo_cliente,id_tipo_cliente) 
+VALUES ('19551123-5','gabriel222','Gabriel','Zavaleta',966244445,'gabriel0@gamil.com',2);
+INSERT INTO  cliente(rut_cliente,contrasena_cliente,nombre_cliente,apellido_cliente,telefono_cliente,correo_cliente,id_tipo_cliente) 
+VALUES ('22552145-2','ana222','Ana','Villacorta',954315636,'ana.v@hotmail.com',2);
+INSERT INTO  cliente(rut_cliente,contrasena_cliente,nombre_cliente,apellido_cliente,telefono_cliente,correo_cliente,id_tipo_cliente) 
+VALUES ('25114554-3','maximo222','Maximo','Ulloa',965418713,'max_ulloa@gamil.com',2);
 
-SELECT * FROM usuario;
 
--- ingresar datos de estado
-insert into estadoPrestamo(nombre) value ('al dia');
-insert into estadoPrestamo(nombre) value ('en retraso');
-SELECT * FROM estadoPrestamo;
+-- ingreso de estado_prestamo
+SELECT * FROM estado_prestamo;
+INSERT INTO  estado_prestamo(nombre_estado) VALUES ('entregado');
+INSERT INTO  estado_prestamo(nombre_estado) VALUES ('retardado');
 
--- ingresar datos libros
-insert into libro(codigo_libro,cant_ejemplar,titulo,autor) values ('AIS12',10,'Analitica predictiva','Eric Siegel');
-insert into libro(codigo_libro,cant_ejemplar,titulo,autor) values ('AIS11',5,'Analisis y diseño de sistemas','Julie E.Kendall');
-insert into libro(codigo_libro,cant_ejemplar,titulo,autor) values ('AIS10',2,'El libro negro del programador','Rafael Gómez Blanes');
-insert into libro(codigo_libro,cant_ejemplar,titulo,autor) values ('AIS09',8,'El viaje de la humanidad','Oded Galor');
-insert into libro(codigo_libro,cant_ejemplar,titulo,autor) values ('AIS08',5,'La teoria del caos','Alberto Perez Izquierdo');
-insert into libro(codigo_libro,cant_ejemplar,titulo,autor) values ('AIS07',8,'Mentalidad estratégica','Carlos Niezen');
-insert into libro(codigo_libro,cant_ejemplar,titulo,autor) values ('AIS06',11,'El libro que tu cerebro no quiere leer','David del rosario');
-insert into libro(codigo_libro,cant_ejemplar,titulo,autor) values ('AIS05',7,'El arte de la invisibilidad','Kevin Mitnick');
-insert into libro(codigo_libro,cant_ejemplar,titulo,autor) values ('AIS04',3,'Hacerse el weón','Pablo Riccheri');
+-- ingreso de Libros
+INSERT INTO libro(codigo_libro,titulo_libro,cant_ejemplar,autor,editorial,categoria) 
+VALUES('A19SD','Tu mejor amigo',5,'W.Bruce Cameron','Roca Bolsillo','Novela');
+INSERT INTO libro(codigo_libro,titulo_libro,cant_ejemplar,autor,editorial,categoria) 
+VALUES('A20SD','Vivir De Las Redes',7,'Sergio Barreda Coy','Alienta Editorial','Relaciones Públicas');
+INSERT INTO libro(codigo_libro,titulo_libro,cant_ejemplar,autor,editorial,categoria) 
+VALUES('A21SD','El Economista Callejero',5,'Axel Kaiser','Ediciones El Mercurio','Economia Politica');
+INSERT INTO libro(codigo_libro,titulo_libro,cant_ejemplar,autor,editorial,categoria) 
+VALUES('A22SD','La bolsa o la vida',2,'Vicki Robin y Joe Dominguez','Kitsune Books','Gestion Empresarial');
+INSERT INTO libro(codigo_libro,titulo_libro,cant_ejemplar,autor,editorial,categoria) 
+VALUES('A23SD','Tecnologia y Narrativa Audivisual',10,'Javier Sierra Sanchez','Fragua','Estudio de Comunicacion');
+INSERT INTO libro(codigo_libro,titulo_libro,cant_ejemplar,autor,editorial,categoria) 
+VALUES('A24SD','Python paso a paso',9,'Pablo Hinojosa Guti','Ediciones de la U','Libro sobre informatica');
+INSERT INTO libro(codigo_libro,titulo_libro,cant_ejemplar,autor,editorial,categoria) 
+VALUES('A25SD','Marta Peirano',7,'Contra el futuro','Debate','Tecnologia de la Informacion');
+INSERT INTO libro(codigo_libro,titulo_libro,cant_ejemplar,autor,editorial,categoria) 
+VALUES('A26SD','Luna',4,'Jose Maria Sancho','Planeta','Astronomia');
+INSERT INTO libro(codigo_libro,titulo_libro,cant_ejemplar,autor,editorial,categoria) 
+VALUES('A27SD','Neurociencia del cuerpo',3,'Nazareth Perales Castellano','Kairos','Neurociencias');
+INSERT INTO libro(codigo_libro,titulo_libro,cant_ejemplar,autor,editorial,categoria) 
+VALUES('A28SD','Culpa Mia',8,'Mercedes Ron','Montena','Ficcion Infantil y Juvenil: Romantica');
+INSERT INTO libro(codigo_libro,titulo_libro,cant_ejemplar,autor,editorial,categoria) 
+VALUES('A29SD','De Sangre y Cenizas',12,'Jennifer L.Armentrout','Puck','Calificadores De Interes');
 SELECT * FROM libro;
 
-select*from prestamo;
+-- ingreso de prestamo_libro (agregar más datos mediante python)
+SELECT * FROM prestamo_libro;
+INSERT INTO  prestamo_libro() VALUES();
+-- ingreso de reporte_prestamo (agregar mas datos mediante python)
+SELECT * FROM reporte_prestamo; 
+INSERT INTO  reporte_prestamo() VALUES();
