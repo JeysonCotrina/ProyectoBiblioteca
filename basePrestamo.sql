@@ -52,7 +52,7 @@ id_cliente int,
 codigo_libro varchar(5),
 id_usuario int,
 constraint fk_id_cliente foreign key (id_cliente) references cliente (id_cliente),
-constraint fk_codigo_libro foreign key (codigo_libro) references libro (codigo_libro),
+constraint fk_codigo_libro foreign key (codigo_libro) references libro (codigo),
 constraint fk_id_usuario foreign key (id_usuario) references usuario (id_usuario)
 );
 
