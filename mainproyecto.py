@@ -32,7 +32,7 @@ def MenuDocente():
 
 def MenuAlumno():
     print(')-----------------------------------(')
-    print(')          LOGIN DOCENTE            (')
+    print(')          LOGIN ALUMNO             (')
     print(')-----------------------------------(')
     print(') 1)Solicitar Prestamo              (')
     print(') 2)Listado de Libros Prestados     (')
