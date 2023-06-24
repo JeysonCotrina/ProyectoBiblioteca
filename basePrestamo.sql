@@ -42,17 +42,15 @@ id_estado int primary key auto_increment,
 nombre varchar(50)
 );
 
-
 CREATE TABLE prestamo(
 id_prestamo int primary key auto_increment,
 f_prestamo date,
 f_entrega_acordada date,
-multa int,
 id_cliente int,
-codigo_libro varchar(5),
+codigo varchar(5),
 id_usuario int,
 constraint fk_id_cliente foreign key (id_cliente) references cliente (id_cliente),
-constraint fk_codigo_libro foreign key (codigo_libro) references libro (codigo),
+constraint fk_codigo foreign key (codigo) references libro(codigo),
 constraint fk_id_usuario foreign key (id_usuario) references usuario (id_usuario)
 );
 
@@ -60,6 +58,7 @@ CREATE TABLE prestamo_libro(
 id_prestamo_libro int,
 f_real_entrega date,
 id_estado int,
+multa int,
 id_prestamo int,
 constraint fk_id_estado foreign key (id_estado) references estado_prestamo (id_estado),
 constraint fk_id_prestamo foreign key (id_prestamo) references prestamo (id_prestamo)
@@ -124,3 +123,14 @@ VALUES('A28SD','Culpa Mia',8,'Mercedes Ron','Montena','Ficcion Infantil y Juveni
 INSERT INTO libro(codigo,titulo,cant_ejemplar,autor,editorial,categoria) 
 VALUES('A29SD','De Sangre y Cenizas',12,'Jennifer L.Armentrout','Puck','Calificadores De Interes');
 SELECT * FROM libro;
+-- PRESTAMO
+INSERT INTO prestamo(f_prestamo,f_entrega_acordada,id_cliente,codigo,id_usuario)
+VALUES('2023-06-15','2023-06-18',3,'A27SD',1);
+
+SELECT * FROM prestamo;
+
+-- PRESTAMO_LIBRO
+INSERT INTO prestamo_libro(f_real_entrega,id_estado,multa,id_prestamo)
+VALUES('2023-06-19',1,1000,1);
+
+SELECT*FROM prestamo_libro;
