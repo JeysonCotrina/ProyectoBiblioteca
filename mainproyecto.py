@@ -15,7 +15,7 @@ def Menu():
 
 def MenuEncargado():
     print('°-----------------------------------°')
-    print('|        LOGIN DE ENCARGADO         |')
+    print('|        OPCIONES DE ENCARGADO      |')
     print('°-----------------------------------°')
     print('| 1)Ver Informacion de los clientes |')
     print('| 2)Realizar Prestamo               |')
@@ -25,7 +25,7 @@ def MenuEncargado():
 
 def MenuDocente():
     print('°-----------------------------------°')
-    print('|          LOGIN DOCENTE            |')
+    print('|         OPCIONES DOCENTE          |')
     print('°-----------------------------------°')
     print('| 1)Solicitar Prestamo              |')
     print('| 2)Listado de Libros Prestados     |')
@@ -34,7 +34,7 @@ def MenuDocente():
 
 def MenuAlumno():
     print('°-----------------------------------°')
-    print('|          LOGIN DOCENTE            |')
+    print('|          OPCIONES DOCENTE         |')
     print('°-----------------------------------°')
     print('| 1)Solicitar Prestamo              |')
     print('| 2)Listado de Libros Prestados     |')
