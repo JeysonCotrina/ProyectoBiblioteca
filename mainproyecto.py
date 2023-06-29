@@ -52,8 +52,6 @@ def main():
             contrasena=input('Ingrese su Contraseña: ')
             r=encargado.identificar_usuario(rut,contrasena)
             if(len(r) == 1):
-                inicioUsuario ='si'
-                while inicioUsuario=='si': 
                     MenuEncargado()
                     op=int(input('Eliga la opcion que desea realizar: '))
                     if op == 1:
@@ -65,12 +63,6 @@ def main():
                         print(f'Nombres: {q}\nApellido: {w}\nTelefono: {e}\nCorreo: {h}\nTipo Cliente: {"Docente" if t == 1 else "Estudiante"}\nMultas: ${l}')
                         print('------------------------------------------')
                         
-
-
-                        
-                        
-                        
-                    
                     elif op == 2:
                         print('Realizar Prestamo')
                     elif op == 3:
@@ -122,11 +114,5 @@ def main():
                 print('Vuelva pronto a la biblioteca')
                 break
                 
-
-
 if __name__ == '__main__':
-    main() 
-
-
-if __name__ == '__main__':
-    main() 
+    main()
