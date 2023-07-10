@@ -33,6 +33,7 @@ nombre varchar(50),
 apellido varchar(50),
 telefono int(9),
 correo varchar(50),
+multas int,
 id_tipo_cliente int,
 constraint fk_id_tipo_cliente foreign key (id_tipo_cliente) references tipo_cliente (id_tipo_cliente)
 );
@@ -80,18 +81,18 @@ SELECT * FROM tipo_cliente;
 
 -- ingreso de Cliente
 SELECT * FROM cliente;
-INSERT INTO  cliente(rut,contrasena,nombre,apellido,telefono,correo,id_tipo_cliente) 
-VALUES ('16547825-4','raul222','Raul','Rodriguez',964251872,'raul34@gmail.com',1);
-INSERT INTO  cliente(rut,contrasena,nombre,apellido,telefono,correo,id_tipo_cliente) 
-VALUES ('25485221-2','elvira222','Elvira','Yraita',922411455,'elvira23@gamil.com',1);
-INSERT INTO  cliente(rut,contrasena,nombre,apellido,telefono,correo,id_tipo_cliente) 
-VALUES ('19655124-1','justina222','Justina','Mejilla',912355354,'justina.4@hotmail.com',1);
-INSERT INTO  cliente(rut,contrasena,nombre,apellido,telefono,correo,id_tipo_cliente) 
-VALUES ('19551123-5','gabriel222','Gabriel','Zavaleta',966244445,'gabriel0@gamil.com',2);
-INSERT INTO  cliente(rut,contrasena,nombre,apellido,telefono,correo,id_tipo_cliente) 
-VALUES ('22552145-2','ana222','Ana','Villacorta',954315636,'ana.v@hotmail.com',2);
-INSERT INTO  cliente(rut,contrasena,nombre,apellido,telefono,correo,id_tipo_cliente) 
-VALUES ('25114554-3','maximo222','Maximo','Ulloa',965418713,'max_ulloa@gamil.com',2);
+INSERT INTO  cliente(rut,contrasena,nombre,apellido,telefono,correo,id_tipo_cliente,multas) 
+VALUES ('16547825-4','raul222','Raul','Rodriguez',964251872,'raul34@gmail.com',1,0);
+INSERT INTO  cliente(rut,contrasena,nombre,apellido,telefono,correo,id_tipo_cliente,multas) 
+VALUES ('25485221-2','elvira222','Elvira','Yraita',922411455,'elvira23@gamil.com',1,0);
+INSERT INTO  cliente(rut,contrasena,nombre,apellido,telefono,correo,id_tipo_cliente,multas) 
+VALUES ('19655124-1','justina222','Justina','Mejilla',912355354,'justina.4@hotmail.com',1,0);
+INSERT INTO  cliente(rut,contrasena,nombre,apellido,telefono,correo,id_tipo_cliente,multas) 
+VALUES ('19551123-5','gabriel222','Gabriel','Zavaleta',966244445,'gabriel0@gamil.com',2,0);
+INSERT INTO  cliente(rut,contrasena,nombre,apellido,telefono,correo,id_tipo_cliente,multas) 
+VALUES ('22552145-2','ana222','Ana','Villacorta',954315636,'ana.v@hotmail.com',2,0);
+INSERT INTO  cliente(rut,contrasena,nombre,apellido,telefono,correo,id_tipo_cliente,multas) 
+VALUES ('25114554-3','maximo222','Maximo','Ulloa',965418713,'max_ulloa@gamil.com',2,0);
 
 
 -- ingreso de estado_prestamo
