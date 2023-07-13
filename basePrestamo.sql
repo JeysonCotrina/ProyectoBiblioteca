@@ -64,7 +64,8 @@ id_prestamo int,
 constraint fk_id_estado foreign key (id_estado) references estado_prestamo (id_estado),
 constraint fk_id_prestamo foreign key (id_prestamo) references prestamo (id_prestamo)
 );
-
+select*from prestamo;
+select*from libro;
 -- ingreso de Usuarios
 INSERT INTO usuario(rut,contrasena,nombre,apellido,telefono,correo) 
 VALUES('21475689-7','juan222','Juan','Roldan',965487721,'juan123@gmail.com');
@@ -94,8 +95,7 @@ VALUES ('22552145-2','ana222','Ana','Villacorta',954315636,'ana.v@hotmail.com',2
 INSERT INTO  cliente(rut,contrasena,nombre,apellido,telefono,correo,id_tipo_cliente,multas) 
 VALUES ('25114554-3','maximo222','Maximo','Ulloa',965418713,'max_ulloa@gamil.com',2,0);
 
-DELIMITER //
-
+SELECT * FROM libro;
 
 -- ingreso de estado_prestamo
 SELECT * FROM estado_prestamo;
