@@ -34,7 +34,7 @@ def MenuDocente():
 
 def MenuAlumno():
     print('°-----------------------------------°')
-    print('|          OPCIONES DOCENTE         |')
+    print('|          OPCIONES ALUMNO          |')
     print('°-----------------------------------°')
     print('| 1)Solicitar Prestamo              |')
     print('| 2)Listado de Libros Prestados     |')
