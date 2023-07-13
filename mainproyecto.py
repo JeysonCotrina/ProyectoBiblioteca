@@ -83,6 +83,7 @@ def main():
             else:
                 print('----------------WARNING------------------')
                 print('Compruebe sus datos y vuelva a ingresarlo')
+                print('-----------------------------------------')
         elif el==2:
             print('----IDENTIFIQUESE----')
             rut=input('Ingrese su rut: ')
@@ -95,6 +96,7 @@ def main():
             else:
                 print('----------------WARNING------------------')
                 print('Compruebe sus datos y vuelva a ingresarlo')
+                print('-----------------------------------------')
         elif el==3:
             print('----IDENTIFIQUESE----')
             rut=input('Ingrese su rut: ')
@@ -107,6 +109,7 @@ def main():
             else:
                 print('----------------WARNING------------------')
                 print('Compruebe sus datos y vuelva a ingresarlo')
+                print('-----------------------------------------')
         else:
             print('No se encuentra esa opción')
             inicio=input('¿Desea continuar? Escriba si o no: ').lower()
