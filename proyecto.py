@@ -20,14 +20,14 @@ class Encargado(Biblioteca):
 class Docente(Biblioteca):
     def identificar_docente(self,rut,contrasena):
         cur=self.conexion.cursor()
-        cur.execute(f"""select rut,id_tipo_cliente,contrasena from cliente where rut ='{rut}' and id_tipo_cliente={1} and contrasena ='{contrasena}';""")
-        datos=cur.fetchall()
+        cur.execute(f"""select rut,id_tipo_cliente,contrasena, multas from cliente where rut ='{rut}' and id_tipo_cliente={1} and contrasena ='{contrasena}';""")
+        datos=cur.fetchone()
         return datos
     
 
 class Alumno(Biblioteca):
     def identificar_alumno(self,rut,contrasena):
         cur=self.conexion.cursor()
-        cur.execute(f"""select rut,id_tipo_cliente from cliente where rut ='{rut}' and id_tipo_cliente={2} and contrasena ='{contrasena}';""")
-        datos=cur.fetchall()
+        cur.execute(f"""select rut,id_tipo_cliente, multas from cliente where rut ='{rut}' and id_tipo_cliente={2} and contrasena ='{contrasena}';""")
+        datos=cur.fetchone()
         return datos
