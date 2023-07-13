@@ -94,6 +94,8 @@ VALUES ('22552145-2','ana222','Ana','Villacorta',954315636,'ana.v@hotmail.com',2
 INSERT INTO  cliente(rut,contrasena,nombre,apellido,telefono,correo,id_tipo_cliente,multas) 
 VALUES ('25114554-3','maximo222','Maximo','Ulloa',965418713,'max_ulloa@gamil.com',2,0);
 
+DELIMITER //
+
 
 -- ingreso de estado_prestamo
 SELECT * FROM estado_prestamo;
@@ -127,7 +129,10 @@ SELECT * FROM libro;
 -- PRESTAMO
 INSERT INTO prestamo(f_prestamo,f_entrega_acordada,id_cliente,codigo,id_usuario)
 VALUES('2023-06-15','2023-06-18',3,'A27SD',1);
-
+INSERT INTO prestamo(f_prestamo,f_entrega_acordada,id_cliente,codigo,id_usuario)
+VALUES('2023-06-15','2023-06-18',1,'A28SD',2);
+INSERT INTO prestamo(f_prestamo,f_entrega_acordada,id_cliente,codigo,id_usuario)
+VALUES('2023-06-15','2023-06-18',1,'A29SD',2);
 SELECT * FROM prestamo;
 
 -- PRESTAMO_LIBRO
