@@ -89,9 +89,15 @@ def main():
             rut=input('Ingrese su rut: ')
             contrasena=input('Ingrese su Contraseña: ')
             r=docente.identificar_docente(rut,contrasena)
-            if(len(r)==1):
+            if r != None:
+                d,e,f,g = r
                 MenuDocente()
                 op=int(input('Eliga la opcion que desea realizar: '))
+                if op == 3:
+                    print("---------------------------------------")
+                    print("               Ver Multas              ")
+                    print(f"Tienes ${g} en multas a pagar")
+                    print("\n")
 
             else:
                 print('----------------WARNING------------------')
@@ -102,10 +108,15 @@ def main():
             rut=input('Ingrese su rut: ')
             contrasena=input('Ingrese su Contraseña: ')
             r=alumno.identificar_alumno(rut,contrasena)
-            if(len(r)==1):
+            if r != None:
+                a,b,c, = r
                 MenuAlumno()
                 op=int(input('Eliga la opcion que desea realizar: '))
-
+                if op == 3:
+                    print("---------------------------------------")
+                    print("               Ver Multas              ")
+                    print(f"Tienes ${c} en multas a pagar")
+                    print("\n")
             else:
                 print('----------------WARNING------------------')
                 print('Compruebe sus datos y vuelva a ingresarlo')
